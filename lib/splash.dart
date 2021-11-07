@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_expenses/colors.dart';
-import 'package:my_expenses/main.dart';
+import 'package:my_expenses/utils/colors.dart';
+import 'home/home.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -16,7 +16,6 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       backgroundColor: white,
       body: Column(
@@ -54,7 +53,7 @@ class _SplashState extends State<Splash> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const MyHomePage(title: "Expense"),
+        builder: (context) => MyHomePage(),
       ),
     );
   }
