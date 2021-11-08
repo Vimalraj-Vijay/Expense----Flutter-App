@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import 'package:my_expenses/utils/colors.dart';
+import 'package:my_expenses/utils/strings.dart';
 
 import 'model/transcation_model.dart';
 
-class ExpenseView extends StatelessWidget {
+class TransationList extends StatelessWidget {
   final List<TranscationModel> transation;
 
-  const ExpenseView({
+  const TransationList({
     Key? key,
     required this.transation,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: transation.map(
-        (tx) {
+    return Container(
+      height: 300,
+      child: ListView.builder(
+        itemBuilder: (ctx, index) {
           return Card(
             child: Row(
               children: [
@@ -31,7 +35,7 @@ class ExpenseView extends StatelessWidget {
                     width: 1.5,
                   )),
                   child: Text(
-                    tx.amount.toString(),
+                    '$appCurrency${transation[index].amount.toString()}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -47,7 +51,7 @@ class ExpenseView extends StatelessWidget {
                         vertical: 10,
                       ),
                       child: Text(
-                        tx.title,
+                        transation[index].title,
                         style: TextStyle(
                           color: textColor,
                           fontWeight: FontWeight.bold,
@@ -55,7 +59,7 @@ class ExpenseView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Text(tx.dateTime.toString(),
+                    Text(DateFormat.yMMMd().format(transation[index].dateTime),
                         style: TextStyle(
                           color: textColor,
                           fontWeight: FontWeight.normal,
@@ -66,7 +70,8 @@ class ExpenseView extends StatelessWidget {
             ),
           );
         },
-      ).toList(),
+        itemCount: transation.length,
+      ),
     );
   }
 }
