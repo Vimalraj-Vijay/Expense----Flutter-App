@@ -23,7 +23,7 @@ class _SplashState extends State<Splash> {
         children: const [
           Center(
             child: Image(
-              image: AssetImage('images/app_logo.png'),
+              image: AssetImage('assests/images/app_logo.png'),
               height: 200,
               width: 200,
             ),

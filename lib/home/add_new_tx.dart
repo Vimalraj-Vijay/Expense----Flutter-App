@@ -2,17 +2,41 @@ import 'package:flutter/material.dart';
 
 import 'package:my_expenses/utils/colors.dart';
 
-class AddNewTx extends StatelessWidget {
+class AddNewTx extends StatefulWidget {
   final Function addTx;
+
 
   AddNewTx({
     required this.addTx,
   });
 
   @override
+  State<AddNewTx> createState() => _AddNewTxState();
+}
+
+class _AddNewTxState extends State<AddNewTx> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
+
+  void _submitData() {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.parse(amountController.text);
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+
+    widget.addTx(
+      enteredTitle,
+      enteredAmount,
+    );
+
+  Navigator.of(context).pop();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final titleController = TextEditingController();
-    final amountController = TextEditingController();
     return Card(
         child: Container(
       padding: EdgeInsets.all(10),
@@ -23,27 +47,23 @@ class AddNewTx extends StatelessWidget {
               labelText: 'Title',
             ),
             controller: titleController,
+            onSubmitted: (_) => _submitData(),
           ),
           TextField(
             decoration: InputDecoration(
               labelText: 'Amount',
             ),
             controller: amountController,
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            onSubmitted: (_) => _submitData(),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 15),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: expenseTextColor,
+                primary: Theme.of(context).primaryColor,
               ),
-              onPressed: () => {
-                addTx(
-                  titleController.text,
-                  double.parse(
-                    amountController.text,
-                  ),
-                )
-              },
+              onPressed: _submitData,
               child: Text("Submit"),
             ),
           ),

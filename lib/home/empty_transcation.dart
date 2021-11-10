@@ -1,0 +1,33 @@
+import 'package:flutter/material.dart';
+
+class EmptyTranscation extends StatelessWidget {
+  const EmptyTranscation({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        children: [
+          const Text(
+            'No Data Found!',
+            style: TextStyle(
+              fontFamily: 'QuickSands',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(
+              top: 15,
+            ),
+            height: 200,
+            child: Image.asset(
+              'assests/images/waiting.png',
+              fit: BoxFit.cover,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
