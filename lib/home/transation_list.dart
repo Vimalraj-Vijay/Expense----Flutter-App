@@ -9,69 +9,49 @@ import 'model/transcation_model.dart';
 
 class TransationList extends StatelessWidget {
   final List<TranscationModel> transation;
+  final Function deleteTrancation;
 
   const TransationList({
     Key? key,
     required this.transation,
+    required this.deleteTrancation,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 480,
       child: transation.isEmpty
           ? EmptyTranscation()
           : ListView.builder(
               itemBuilder: (ctx, index) {
                 return Card(
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: 10,
-                          horizontal: 15,
-                        ),
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                          color: Theme.of(context).primaryColorDark,
-                          width: 1.5,
-                        )),
-                        child: Text(
-                          '$appCurrency${transation[index].amount.toStringAsFixed(2)}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                            color: Theme.of(context).primaryColor,
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: FittedBox(
+                          child: Text(
+                            '$appCurrency ${transation[index].amount}',
                           ),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 10,
-                            ),
-                            child: Text(
-                              transation[index].title,
-                              style: TextStyle(
-                                color: textColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                          Text(
-                              DateFormat.yMMMd()
-                                  .format(transation[index].dateTime),
-                              style: TextStyle(
-                                color: textColor,
-                                fontWeight: FontWeight.normal,
-                              )),
-                        ],
-                      )
-                    ],
+                    ),
+                    title: Text(
+                      transation[index].title,
+                    ),
+                    subtitle: Text(
+                      DateFormat.yMMMEd().format(transation[index].dateTime),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      color: Theme.of(context).errorColor,
+                      onPressed: () {
+                        deleteTrancation(transation[index].id );
+                      },
+                    ),
                   ),
                 );
               },

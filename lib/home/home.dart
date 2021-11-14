@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_expenses/home/add_new_tx.dart';
+import 'package:my_expenses/home/chart/chart.dart';
 import 'model/transcation_model.dart';
 import 'transation_list.dart';
 
@@ -36,16 +37,30 @@ class _MyHomePageState extends State<MyHomePage> {
     ), */
   ];
 
-  void _addTranscations(String title, double amount) {
+  List<TranscationModel> get _recentTranscation {
+    return transation.where((element) {
+      return element.dateTime.isAfter(DateTime.now().subtract(
+        Duration(days: 7),
+      ));
+    }).toList();
+  }
+
+  void _addTranscations(String title, double amount, DateTime selectedDate) {
     final newTx = TranscationModel(
       title: title,
       amount: amount,
       id: DateTime.now().toString(),
-      dateTime: DateTime.now(),
+      dateTime: selectedDate,
     );
 
     setState(() {
       transation.add(newTx);
+    });
+  }
+
+  void _deleteTranscation(String id) {
+    setState(() {
+      transation.removeWhere((element) => element.id == id);
     });
   }
 
@@ -81,12 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Card(
-              child: Text("Chart"),
-            ),
+            Chart(transcationValues: _recentTranscation),
             TransationList(
-              transation: transation,
-            )
+                transation: transation, deleteTrancation: _deleteTranscation),
           ],
         ),
       ),

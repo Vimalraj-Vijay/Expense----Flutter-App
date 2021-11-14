@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'package:my_expenses/utils/colors.dart';
+import 'package:intl/intl.dart';
+import 'package:my_expenses/utils/strings.dart';
 
 class AddNewTx extends StatefulWidget {
   final Function addTx;
-
 
   AddNewTx({
     required this.addTx,
@@ -18,21 +17,38 @@ class _AddNewTxState extends State<AddNewTx> {
   final titleController = TextEditingController();
 
   final amountController = TextEditingController();
+  var _selectedDate;
 
   void _submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
 
-    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+    if (enteredTitle.isEmpty ||
+        amountController.text.isEmpty ||
+        enteredAmount <= 0 ||
+        _selectedDate == null) {
       return;
     }
 
-    widget.addTx(
-      enteredTitle,
-      enteredAmount,
-    );
+    widget.addTx(enteredTitle, enteredAmount, _selectedDate);
 
-  Navigator.of(context).pop();
+    Navigator.of(context).pop();
+  }
+
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2019),
+      lastDate: DateTime.now(),
+    ).then((value) {
+      if (value == null) {
+        return;
+      }
+      setState(() {
+        _selectedDate = value;
+      });
+    });
   }
 
   @override
@@ -57,8 +73,26 @@ class _AddNewTxState extends State<AddNewTx> {
             keyboardType: TextInputType.numberWithOptions(decimal: true),
             onSubmitted: (_) => _submitData(),
           ),
+          Container(
+            padding: EdgeInsets.only(top: 15),
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(_selectedDate == null
+                    ? noDateChoose
+                    : DateFormat.yMMMd().format(_selectedDate)),
+                ElevatedButton(
+                    onPressed: _presentDatePicker,
+                    child: Text(chooseDate),
+                    style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor,
+                    ))
+              ],
+            ),
+          ),
           Padding(
-            padding: const EdgeInsets.only(top: 15),
+            padding: const EdgeInsets.only(top: 25),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Theme.of(context).primaryColor,
