@@ -1,15 +1,23 @@
 # Expenses
 
-A new Flutter project.
+A Simple Expense application Using Dart and Flutter Framework .
 
-## Getting Started
+# Screenshots
+[![flutter-03.png](https://i.postimg.cc/dVVkcXKY/flutter-03.png)](https://postimg.cc/WhxbM53W)
+[![flutter-04.png](https://i.postimg.cc/j2h5G6g2/flutter-04.png)](https://postimg.cc/QKHh77rZ)
+[![flutter-02.png](https://i.postimg.cc/sDR7qwXj/flutter-02.png)](https://postimg.cc/7bm5T10d)
 
-This project is a starting point for a Flutter application.
+# Some Useful link
+https://flutter.dev/
 
-A few resources to get you started if this is your first Flutter project:
+https://flutter.dev/docs/get-started/codelab
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+https://flutter.dev/docs/cookbook
+
+https://pub.dev/
+
+https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html**
+
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
