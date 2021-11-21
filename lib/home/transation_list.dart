@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_expenses/home/empty_transcation.dart';
-
-import 'package:my_expenses/utils/colors.dart';
 import 'package:my_expenses/utils/strings.dart';
 
 import 'model/transcation_model.dart';

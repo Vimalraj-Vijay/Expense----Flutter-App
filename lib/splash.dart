@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_expenses/home/home.dart';
 import 'package:my_expenses/utils/colors.dart';
-import 'home/home.dart';
 
 class Splash extends StatefulWidget {
+  static var id = "/splash";
   @override
   _SplashState createState() => _SplashState();
 }
@@ -49,12 +50,6 @@ class _SplashState extends State<Splash> {
         milliseconds: 2500,
       ),
     );
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => MyHomePage(),
-      ),
-    );
+    Navigator.pushReplacementNamed(context, MyHomePage.id);
   }
 }

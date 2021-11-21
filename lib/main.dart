@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_expenses/routes.dart';
 import 'package:my_expenses/splash.dart';
 
 void main() {
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         fontFamily: 'Open Sans',
       ),
-      home: Splash(),
+      initialRoute: Splash.id,
+      routes: Routes.initRoutes(),
     );
   }
 }

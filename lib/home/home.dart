@@ -5,37 +5,14 @@ import 'model/transcation_model.dart';
 import 'transation_list.dart';
 
 class MyHomePage extends StatefulWidget {
+static var id = "/homePage"; 
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<TranscationModel> transation = [
-    /* TranscationModel(
-      id: 'v1',
-      title: "Dress",
-      amount: 85.22,
-      dateTime: DateTime.now(),
-    ),
-    TranscationModel(
-      id: 'v2',
-      title: "Food",
-      amount: 125.00,
-      dateTime: DateTime.now(),
-    ),
-    TranscationModel(
-      id: 'v3',
-      title: "Bike",
-      amount: 1500.96,
-      dateTime: DateTime.now(),
-    ),
-    TranscationModel(
-      id: 'v4',
-      title: "Party",
-      amount: 8500.45,
-      dateTime: DateTime.now(),
-    ), */
-  ];
+  final List<TranscationModel> transation = [];
 
   List<TranscationModel> get _recentTranscation {
     return transation.where((element) {
