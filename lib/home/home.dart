@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_expenses/home/add_new_tx.dart';
 import 'package:my_expenses/home/chart/chart.dart';
@@ -5,7 +8,7 @@ import 'model/transcation_model.dart';
 import 'transation_list.dart';
 
 class MyHomePage extends StatefulWidget {
-static var id = "/homePage"; 
+  static var id = "/homePage";
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -13,6 +16,8 @@ static var id = "/homePage";
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<TranscationModel> transation = [];
+
+  bool isSwitchOn = false;
 
   List<TranscationModel> get _recentTranscation {
     return transation.where((element) {
@@ -52,37 +57,104 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Personal Expenses',
-          style: TextStyle(
-            fontFamily: 'QuickSands',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => startAddTx(context),
-            icon: Icon(
-              Icons.add,
+    final mediaQuery = MediaQuery.of(context);
+    bool isLandScape = mediaQuery.orientation == Orientation.landscape;
+
+    final dynamic appBarValue = Platform.isIOS
+        ? CupertinoNavigationBar(
+            middle: Text(
+              "Personal Expenses",
             ),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  child: Icon(CupertinoIcons.add),
+                  onTap: () => startAddTx(context),
+                )
+              ],
+            ),
+          )
+        : AppBar(
+            title: const Text(
+              "Personal Expenses",
+              style: TextStyle(
+                fontFamily: 'QuickSands',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () => startAddTx(context),
+                icon: Icon(
+                  Icons.add,
+                ),
+              ),
+            ],
+          );
+    final txListWidget = Container(
+      height: (mediaQuery.size.height -
+              appBarValue.preferredSize.height -
+              mediaQuery.padding.top) *
+          .7,
+      child: TransationList(
+          transation: transation, deleteTrancation: _deleteTranscation),
+    );
+    final pageBody = SafeArea(
+      child: SingleChildScrollView(
         child: Column(
           children: [
-            Chart(transcationValues: _recentTranscation),
-            TransationList(
-                transation: transation, deleteTrancation: _deleteTranscation),
+            if (isLandScape)
+              Row(
+                children: [
+                  Text('Show Chart'),
+                  Switch.adaptive(
+                      value: isSwitchOn,
+                      onChanged: (value) {
+                        setState(() {
+                          isSwitchOn = value;
+                        });
+                      }),
+                ],
+              ),
+            if (!isLandScape)
+              Container(
+                height: (mediaQuery.size.height -
+                        appBarValue.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    .3,
+                child: Chart(transcationValues: _recentTranscation),
+              ),
+            if (!isLandScape) txListWidget,
+            if (isLandScape)
+              isSwitchOn
+                  ? Container(
+                      height: (mediaQuery.size.height -
+                              appBarValue.preferredSize.height -
+                              mediaQuery.padding.top) *
+                          .7,
+                      child: Chart(transcationValues: _recentTranscation),
+                    )
+                  : txListWidget,
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => startAddTx(context),
-      ),
     );
+
+    return Platform.isIOS
+        ? CupertinoPageScaffold(
+            child: pageBody,
+            navigationBar: appBarValue,
+          )
+        : Scaffold(
+            appBar: appBarValue,
+            body: pageBody,
+            floatingActionButton: Platform.isIOS
+                ? Container()
+                : FloatingActionButton(
+                    child: Icon(Icons.add),
+                    onPressed: () => startAddTx(context),
+                  ),
+          );
   }
 }

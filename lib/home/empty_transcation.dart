@@ -5,9 +5,8 @@ class EmptyTranscation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
+    return LayoutBuilder(builder: (ctx, constraints) {
+      return Column(
         children: [
           const Text(
             'No Data Found!',
@@ -20,14 +19,14 @@ class EmptyTranscation extends StatelessWidget {
             padding: EdgeInsets.only(
               top: 15,
             ),
-            height: 200,
+            height: constraints.maxHeight * .7,
             child: Image.asset(
               'assests/images/waiting.png',
               fit: BoxFit.cover,
             ),
           )
         ],
-      ),
-    );
+      );
+    });
   }
 }

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_expenses/utils/strings.dart';
@@ -53,56 +56,73 @@ class _AddNewTxState extends State<AddNewTx> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        child: Container(
-      padding: EdgeInsets.all(10),
-      child: Column(
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Title',
-            ),
-            controller: titleController,
-            onSubmitted: (_) => _submitData(),
-          ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Amount',
-            ),
-            controller: amountController,
-            keyboardType: TextInputType.numberWithOptions(decimal: true),
-            onSubmitted: (_) => _submitData(),
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 15),
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(_selectedDate == null
-                    ? noDateChoose
-                    : DateFormat.yMMMd().format(_selectedDate)),
-                ElevatedButton(
-                    onPressed: _presentDatePicker,
-                    child: Text(chooseDate),
-                    style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).primaryColor,
-                    ))
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 25),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).primaryColor,
+    return SingleChildScrollView(
+      child: Card(
+          child: Container(
+        padding: EdgeInsets.only(
+          top: 10,
+          left: 10,
+          right: 10,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+        ),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Title',
               ),
-              onPressed: _submitData,
-              child: Text("Submit"),
+              controller: titleController,
+              onSubmitted: (_) => _submitData(),
             ),
-          ),
-        ],
-      ),
-    ));
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Amount',
+              ),
+              controller: amountController,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => _submitData(),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 15),
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(_selectedDate == null
+                      ? noDateChoose
+                      : DateFormat.yMMMd().format(_selectedDate)),
+                  Platform.isIOS
+                      ? CupertinoButton(
+                          onPressed: _presentDatePicker,
+                          child: Text(chooseDate),
+                        )
+                      : ElevatedButton(
+                          onPressed: _presentDatePicker,
+                          child: Text(chooseDate),
+                          style: ElevatedButton.styleFrom(
+                            primary: Theme.of(context).primaryColor,
+                          ))
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 25),
+              child: Platform.isIOS
+                  ? CupertinoButton(
+                      onPressed: _submitData,
+                      child: Text("Submit"),
+                    )
+                  : ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Theme.of(context).primaryColor,
+                      ),
+                      onPressed: _submitData,
+                      child: Text("Submit"),
+                    ),
+            ),
+          ],
+        ),
+      )),
+    );
   }
 }
