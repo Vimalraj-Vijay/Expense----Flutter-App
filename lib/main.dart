@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_expenses/routes.dart';
+import 'package:my_expenses/utils/routes.dart';
 import 'package:my_expenses/splash.dart';
 
 void main() {
