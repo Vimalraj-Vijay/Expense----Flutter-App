@@ -22,7 +22,9 @@ jobs:
           package: egakcap
           ignore: "*_state.dart, do_not_import_me.dart"
       - run: flutter pub get
+        continue-on-error: true
       - run: flutter analyze
+        continue-on-error: true
       - run: flutter test --coverage .
       - uses: codecov/codecov-action@v1.0.2
         with:
