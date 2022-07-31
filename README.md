@@ -2,6 +2,10 @@
 
 [![Codecov](https://github.com/Vimalraj-Vijay/Expense----Flutter-App/actions/workflows/codecov.yml/badge.svg)](https://github.com/Vimalraj-Vijay/Expense----Flutter-App/actions/workflows/codecov.yml)
 
+[![codecov](https://codecov.io/gh/Vimalraj-Vijay/Expense----Flutter-App/branch/master/graph/badge.svg?token=UBJOQAX04T)](https://codecov.io/gh/Vimalraj-Vijay/Expense----Flutter-App)
+
+![CodeCov graph](https://codecov.io/gh/Vimalraj-Vijay/Expense----Flutter-App/branch/master/graphs/sunburst.svg?token=UBJOQAX04T)
+
 A Simple Expense application Using Dart and Flutter Framework .
 
 # Screenshots Android
