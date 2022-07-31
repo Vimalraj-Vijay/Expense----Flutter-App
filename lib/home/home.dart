@@ -10,6 +10,8 @@ import 'transation_list.dart';
 class MyHomePage extends StatefulWidget {
   static var id = "/homePage";
 
+  const MyHomePage({Key? key}) : super(key: key);
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -22,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
   List<TranscationModel> get _recentTranscation {
     return transation.where((element) {
       return element.dateTime.isAfter(DateTime.now().subtract(
-        Duration(days: 7),
+        const Duration(days: 7),
       ));
     }).toList();
   }
@@ -62,14 +64,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final dynamic appBarValue = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text(
+            middle: const Text(
               "Personal Expenses",
             ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 GestureDetector(
-                  child: Icon(CupertinoIcons.add),
+                  child: const Icon(CupertinoIcons.add),
                   onTap: () => startAddTx(context),
                 )
               ],
@@ -86,13 +88,13 @@ class _MyHomePageState extends State<MyHomePage> {
             actions: [
               IconButton(
                 onPressed: () => startAddTx(context),
-                icon: Icon(
+                icon: const Icon(
                   Icons.add,
                 ),
               ),
             ],
           );
-    final txListWidget = Container(
+    final txListWidget = SizedBox(
       height: (mediaQuery.size.height -
               appBarValue.preferredSize.height -
               mediaQuery.padding.top) *
@@ -107,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (isLandScape)
               Row(
                 children: [
-                  Text('Show Chart'),
+                  const Text('Show Chart'),
                   Switch.adaptive(
                       value: isSwitchOn,
                       onChanged: (value) {
@@ -118,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             if (!isLandScape)
-              Container(
+              SizedBox(
                 height: (mediaQuery.size.height -
                         appBarValue.preferredSize.height -
                         mediaQuery.padding.top) *
@@ -128,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (!isLandScape) txListWidget,
             if (isLandScape)
               isSwitchOn
-                  ? Container(
+                  ? SizedBox(
                       height: (mediaQuery.size.height -
                               appBarValue.preferredSize.height -
                               mediaQuery.padding.top) *
@@ -152,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: Platform.isIOS
                 ? Container()
                 : FloatingActionButton(
-                    child: Icon(Icons.add),
+                    child: const Icon(Icons.add),
                     onPressed: () => startAddTx(context),
                   ),
           );

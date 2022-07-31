@@ -3,7 +3,6 @@ import 'package:my_expenses/utils/routes.dart';
 import 'package:my_expenses/splash.dart';
 
 void main() {
-
   /* This Code is used to Set ur app always in portrait mode 
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(

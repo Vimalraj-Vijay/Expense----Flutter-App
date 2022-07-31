@@ -18,11 +18,11 @@ class TransationList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return transation.isEmpty
-        ? EmptyTranscation()
+        ? const EmptyTranscation()
         : ListView.builder(
             itemBuilder: (ctx, index) {
               return Card(
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                 child: ListTile(
                   leading: CircleAvatar(
                     radius: 30,
@@ -42,10 +42,10 @@ class TransationList extends StatelessWidget {
                     DateFormat.yMMMEd().format(transation[index].dateTime),
                   ),
                   trailing: IconButton(
-                    icon: Icon(Icons.delete),
+                    icon: const Icon(Icons.delete),
                     color: Theme.of(context).errorColor,
                     onPressed: () {
-                      deleteTrancation(transation[index].id );
+                      deleteTrancation(transation[index].id);
                     },
                   ),
                 ),
