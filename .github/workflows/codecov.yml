@@ -18,6 +18,8 @@ jobs:
         with:
           channel: "stable"
       - uses: stelynx/dart-full-coverage@v1.0.5
+      - run: flutter clean
+        continue-on-error: true
       - run: flutter pub get
         continue-on-error: true
       - run: flutter analyze
@@ -29,7 +31,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
           version: "v0.1.15"
-          files: ./coverage.xml,./e2e-coverage.xml 
+          files: /test
           flags: unittests # optional
           name: codecov-umbrella # optional
           fail_ci_if_error: true # optional (default = false)
