@@ -4,13 +4,13 @@ import 'package:my_expenses/utils/strings.dart';
 
 class ChartBar extends StatelessWidget {
   final String label;
-  final double spendedAmout;
+  final double spendAmount;
   final double spendingTotalPercent;
 
   const ChartBar({
     Key? key,
     required this.label,
-    required this.spendedAmout,
+    required this.spendAmount,
     required this.spendingTotalPercent,
   }) : super(key: key);
 
@@ -20,16 +20,16 @@ class ChartBar extends StatelessWidget {
       builder: (ctx, constraints) {
         return Column(
           children: [
-            Container(
+            SizedBox(
               height: constraints.maxHeight * .15,
               child: FittedBox(
-                child: Text("$appCurrency ${spendedAmout.toStringAsFixed(0)}"),
+                child: Text("$appCurrency ${spendAmount.toStringAsFixed(0)}"),
               ),
             ),
             SizedBox(
               height: constraints.maxHeight * .05,
             ),
-            Container(
+            SizedBox(
               height: constraints.maxHeight * .6,
               width: 10,
               child: Stack(
@@ -55,10 +55,10 @@ class ChartBar extends StatelessWidget {
             SizedBox(
               height: constraints.maxHeight * .05,
             ),
-            Container(
+            SizedBox(
               height: constraints.maxHeight * .15,
               child: FittedBox(
-                child: Text(label ),
+                child: Text(label),
               ),
             ),
           ],

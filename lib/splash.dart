@@ -4,6 +4,8 @@ import 'package:my_expenses/utils/colors.dart';
 
 class Splash extends StatefulWidget {
   static var id = "/splash";
+
+  const Splash({Key? key}) : super(key: key);
   @override
   _SplashState createState() => _SplashState();
 }

@@ -45,7 +45,7 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Row(
@@ -55,7 +55,7 @@ class Chart extends StatelessWidget {
               fit: FlexFit.tight,
               child: ChartBar(
                 label: data['day'].toString(),
-                spendedAmout: double.parse(data['amount'].toString()),
+                spendAmount: double.parse(data['amount'].toString()),
                 spendingTotalPercent: totalSpending == 0.0
                     ? 0.0
                     : (data['amount'] as double) / totalSpending,

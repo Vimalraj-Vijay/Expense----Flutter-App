@@ -8,9 +8,10 @@ import 'package:my_expenses/utils/strings.dart';
 class AddNewTx extends StatefulWidget {
   final Function addTx;
 
-  AddNewTx({
+  const AddNewTx({
+    Key? key,
     required this.addTx,
-  });
+  }) : super(key: key);
 
   @override
   State<AddNewTx> createState() => _AddNewTxState();
@@ -20,7 +21,7 @@ class _AddNewTxState extends State<AddNewTx> {
   final titleController = TextEditingController();
 
   final amountController = TextEditingController();
-  var _selectedDate;
+  dynamic _selectedDate;
 
   void _submitData() {
     final enteredTitle = titleController.text;
@@ -68,22 +69,23 @@ class _AddNewTxState extends State<AddNewTx> {
         child: Column(
           children: [
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Title',
               ),
               controller: titleController,
               onSubmitted: (_) => _submitData(),
             ),
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Amount',
               ),
               controller: amountController,
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (_) => _submitData(),
             ),
             Container(
-              padding: EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 15),
               width: double.infinity,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,11 +96,11 @@ class _AddNewTxState extends State<AddNewTx> {
                   Platform.isIOS
                       ? CupertinoButton(
                           onPressed: _presentDatePicker,
-                          child: Text(chooseDate),
+                          child: const Text(chooseDate),
                         )
                       : ElevatedButton(
                           onPressed: _presentDatePicker,
-                          child: Text(chooseDate),
+                          child: const Text(chooseDate),
                           style: ElevatedButton.styleFrom(
                             primary: Theme.of(context).primaryColor,
                           ))
@@ -110,14 +112,14 @@ class _AddNewTxState extends State<AddNewTx> {
               child: Platform.isIOS
                   ? CupertinoButton(
                       onPressed: _submitData,
-                      child: Text("Submit"),
+                      child: const Text("Submit"),
                     )
                   : ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: Theme.of(context).primaryColor,
                       ),
                       onPressed: _submitData,
-                      child: Text("Submit"),
+                      child: const Text("Submit"),
                     ),
             ),
           ],

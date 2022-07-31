@@ -16,7 +16,7 @@ class EmptyTranscation extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               top: 15,
             ),
             height: constraints.maxHeight * .7,
