@@ -26,13 +26,8 @@ jobs:
         continue-on-error: true
       - run: flutter test --coverage .
         continue-on-error: true
-      - uses: actions/checkout@master
-      - uses: codecov/codecov-action@v3
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          version: "v0.1.15"
-          files: /test
-          flags: unittests # optional
-          name: codecov-umbrella # optional
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: coverage/lcov.info
