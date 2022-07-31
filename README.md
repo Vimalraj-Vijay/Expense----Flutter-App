@@ -1,5 +1,7 @@
 # Expenses
 
+[![Codecov](https://github.com/Vimalraj-Vijay/Expense----Flutter-App/actions/workflows/codecov.yml/badge.svg)](https://github.com/Vimalraj-Vijay/Expense----Flutter-App/actions/workflows/codecov.yml)
+
 A Simple Expense application Using Dart and Flutter Framework .
 
 # Screenshots Android
