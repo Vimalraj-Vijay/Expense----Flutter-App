@@ -18,19 +18,17 @@ jobs:
         with:
           channel: "stable"
       - uses: stelynx/dart-full-coverage@v1.0.5
-        with:
-          package: egakcap
-          ignore: "*_state.dart, do_not_import_me.dart"
+      - run: flutter clean
+        continue-on-error: true
       - run: flutter pub get
+        continue-on-error: true
       - run: flutter analyze
+        continue-on-error: true
       - run: flutter test --coverage .
-      - uses: codecov/codecov-action@v1.0.2
+        continue-on-error: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage/reports/
-          fail_ci_if_error: true
-          files: ./coverage1.xml,./coverage2.xml
-          flags: unittests
-          name: codecov-umbrella
-          path_to_write_report: ./coverage/codecov_report.txt
-          verbose: true
+          file: coverage/lcov.info
+          comment: true
