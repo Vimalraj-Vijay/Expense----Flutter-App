@@ -18,22 +18,18 @@ jobs:
         with:
           channel: "stable"
       - uses: stelynx/dart-full-coverage@v1.0.5
-        with:
-          package: egakcap
-          ignore: "*_state.dart, do_not_import_me.dart"
       - run: flutter pub get
         continue-on-error: true
       - run: flutter analyze
         continue-on-error: true
       - run: flutter test --coverage .
         continue-on-error: true
-      - uses: codecov/codecov-action@v1.0.2
+      - uses: actions/checkout@master
+      - uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage/reports/
-          fail_ci_if_error: true
-          files: ./coverage1.xml,./coverage2.xml
-          flags: unittests
-          name: codecov-umbrella
-          path_to_write_report: ./coverage/codecov_report.txt
-          verbose: true
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          files: ./coverage1.xml,./coverage2.xml # optional
+          flags: unittests # optional
+          name: codecov-umbrella # optional
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
