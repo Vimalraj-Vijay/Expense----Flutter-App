@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          token: "048916eb-634f-4059-b6a3-c78b59a6438e" # not required for public repos
           version: "v0.1.15"
           files: ./coverage1.xml,./coverage2.xml # optional
           flags: unittests # optional
