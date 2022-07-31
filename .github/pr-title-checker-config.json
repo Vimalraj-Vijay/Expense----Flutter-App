@@ -5,6 +5,7 @@
   },
   "CHECKS": {
     "prefixes": ["Fix: ", "Feature: ", "Test Case: "],
+    "regexp": "docs\\(v[0-9]\\): ",
     "regexpFlags": "i",
     "ignoreLabels" : ["dont-check-PRs-with-this-label", "meta"]
   },
