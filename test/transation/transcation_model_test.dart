@@ -9,6 +9,7 @@ void main() async {
         id: "id", title: "title", amount: 33.0, dateTime: DateTime.now());
     test('Test all model Values', () async {
       expect(transcationModel.id.isNotEmpty, true);
+      expect(transcationModel.title.isNotEmpty, true);
     });
   });
 }
