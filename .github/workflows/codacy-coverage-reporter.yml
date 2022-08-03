@@ -9,6 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run codacy-coverage-reporter
-        uses: ./
+        uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          # or
+          # api-token: ${{ secrets.CODACY_API_TOKEN }}
+          coverage-reports: all
