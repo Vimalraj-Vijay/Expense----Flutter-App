@@ -10,6 +10,8 @@ void main() async {
     test('Test all model Values', () async {
       expect(transcationModel.id.isNotEmpty, true);
       expect(transcationModel.title.isNotEmpty, true);
+      expect(transcationModel.title, "title");
+      expect(transcationModel.amount, 33.0);
     });
   });
 }
