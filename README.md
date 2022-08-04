@@ -6,6 +6,10 @@
 
 ![CodeCov graph](https://codecov.io/gh/Vimalraj-Vijay/Expense----Flutter-App/branch/master/graphs/sunburst.svg?token=UBJOQAX04T)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/f02abf6ae2fb4ccfa385bd9a3a1fc373)](https://www.codacy.com/gh/Vimalraj-Vijay/Expense----Flutter-App/dashboard?utm_source=github.com&utm_medium=referral&utm_content=Vimalraj-Vijay/Expense----Flutter-App&utm_campaign=Badge_Coverage)
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f02abf6ae2fb4ccfa385bd9a3a1fc373)](https://www.codacy.com/gh/Vimalraj-Vijay/Expense----Flutter-App/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Vimalraj-Vijay/Expense----Flutter-App&amp;utm_campaign=Badge_Grade)
+
 A Simple Expense application Using Dart and Flutter Framework .
 
 # Screenshots Android
